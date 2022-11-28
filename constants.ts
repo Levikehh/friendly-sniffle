@@ -3,6 +3,11 @@ const ERROR_MESSAGES = {
     "401": "You don't have permission to perform such action!"
 }
 
+const SCHEMA_ERROR_MESSAGES = {
+    PRICE_NEGATIVE: "Price must be a positive number"
+}
+
 module.exports = {
-    ERROR_MESSAGES
+    ERROR_MESSAGES,
+    SCHEMA_ERROR_MESSAGES
 }

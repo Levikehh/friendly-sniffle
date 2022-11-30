@@ -9,6 +9,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(morgan('tiny'))
 
-app.use('/api/book', require("./book/routes"))
+app.use('/api/book', require("@/src/book/routes"))
+app.use('/api/category', require("@/src/category/routes"))
 
 module.exports = app

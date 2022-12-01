@@ -17,6 +17,15 @@ export const update = z.object({
     .max(6)
     .transform((a) => a.toUpperCase())
     .optional(),
+  categories: z
+    .preprocess((a) => JSON.parse(z.string().parse(a)), z.string().array())
+    .transform((a) => ({
+      connectOrCreate: a.map((category) => ({
+        where: { name: category },
+        create: { name: category },
+      })),
+    }))
+    .optional(),
 });
 
 export const create = z.object({
@@ -31,4 +40,12 @@ export const create = z.object({
     .min(2)
     .max(6)
     .transform((a) => a.toUpperCase()),
+  categories: z
+    .preprocess((a) => JSON.parse(z.string().parse(a)), z.string().array())
+    .transform((a) => ({
+      connectOrCreate: a.map((category) => ({
+        where: { name: category },
+        create: { name: category },
+      })),
+    })),
 });

@@ -7,38 +7,38 @@ const prisma = require("@/utils/db");
 module.exports = {
   get: async (req: Request, res: Response) => {
     const { id }: { id?: string } = req.params;
-    const category: Category = await prisma.category.findUnique({
+    const single: Category = await prisma.category.findUnique({
       where: { id: id },
     });
-    return res.json(category);
+    return res.json(single);
   },
   all: async (req: Request, res: Response) => {
-    const categories: Category[] = await prisma.category.findMany();
-    return res.json(categories);
+    const all: Category[] = await prisma.category.findMany();
+    return res.json(all);
   },
   update: async (req: Request, res: Response) => {
     const { id }: { id?: string } = req.params;
     const schema = update.safeParse(req.body);
     if (!schema.success) return res.status(400).json(schema.error);
-    const updatedCategory: Category = await prisma.category.update({
+    const updated: Category = await prisma.category.update({
       where: { id: id },
       data: schema.data,
     });
-    return res.json(updatedCategory);
+    return res.json(updated);
   },
   delete: async (req: Request, res: Response) => {
     const { id }: { id?: string } = req.params;
-    const deletedCategory: Category = await prisma.category.delete({
+    const deleted: Category = await prisma.category.delete({
       where: { id: id },
     });
-    return res.json(deletedCategory);
+    return res.json(deleted);
   },
   create: async (req: Request, res: Response) => {
     const schema = create.safeParse(req.body);
     if(!schema.success) return res.status(400).json(schema.error)
-    const newCategory: Category = await prisma.category.create({
+    const created: Category = await prisma.category.create({
       data: schema.data
     })
-    return res.json(newCategory);
+    return res.json(created);
   },
 };

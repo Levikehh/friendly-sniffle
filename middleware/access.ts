@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 
-const {ERROR_MESSAGES} = require("../constants")
+const {ERROR_MESSAGES} = require("@/constants")
 
 const hasAccess = (minimumAccessLevel: number) => {
   return (req: Request, res: Response, next: NextFunction) => {

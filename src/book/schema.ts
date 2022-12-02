@@ -26,6 +26,14 @@ export const update = z.object({
       })),
     }))
     .optional(),
+  authors: z
+    .preprocess((a) => JSON.parse(z.string().parse(a)), z.string().array())
+    .transform((a) => ({
+      connect: a.map((author) => ({
+        id: author,
+      })),
+    }))
+    .optional(),
 });
 
 export const create = z.object({
@@ -46,6 +54,13 @@ export const create = z.object({
       connectOrCreate: a.map((category) => ({
         where: { name: category },
         create: { name: category },
+      })),
+    })),
+  authors: z
+    .preprocess((a) => JSON.parse(z.string().parse(a)), z.string().array())
+    .transform((a) => ({
+      connect: a.map((author) => ({
+        id: author,
       })),
     })),
 });

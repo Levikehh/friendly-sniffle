@@ -11,5 +11,6 @@ app.use(morgan('tiny'))
 
 app.use('/api/book', require("@/src/book/routes"))
 app.use('/api/category', require("@/src/category/routes"))
+app.use('/api/author', require("@/src/author/routes"))
 
 module.exports = app
